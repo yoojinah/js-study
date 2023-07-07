@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .modal {
+        width: 400px;
+        height: 200px;
+        background-color: antiquewhite;
+        position: absolute;
+        z-index: 2;
+        left: 0;
+        top: 0;
+        display: none;
+        transition: all 0.3s;
+      }
+      .bg {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #3333335b;
+        z-index: 1;
+        display: none;
+        transition: all 0.3s;
+      }
+      .modal_con {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: stretch;
+        width: 100%;
+      }
+      .close {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transition: all 0.3s;
+      }
+    </style>
+  </head>
+  <body>
+    <button type="button" id="btn">모달창아 나와랏</button>
+    <div class="bg"></div>
+    <div class="modal">
+      <div class="modal_con">모달 내용</div>
+      <div class="close"><button>닫기</button></div>
+    </div>
+    <script>
+      // prompt
+      // let age = prompt("나이를 입력하세요", 100);
+      // alert("당신의 나이는" + age);
+
+      // confirm
+      // let boss = confirm("당신이 주인인가요?");
+      // alert(boss);
+
+      function onClick() {
+        document.querySelector(".modal").style.display = "block";
+        document.querySelector(".bg").style.display = "block";
+      }
+
+      function offClick() {
+        document.querySelector(".modal").style.display = "none";
+        document.querySelector(".bg").style.display = "none";
+      }
+
+      document.getElementById("btn").addEventListener("click", onClick);
+      document.querySelector(".close").addEventListener("click", offClick);
+
+      let user = prompt("이름을 입력하세요");
+      alert(user);
+    </script>
+  </body>
+</html>
