@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      for (let i = 2; i <= 10; i++) {
+        if (i % 2 === 0) {
+          console.log(i);
+        }
+      }
+
+      let num;
+
+      // do {
+      //   num = prompt("100을 초과하는 숫자를 입력해 주세요", 0);
+      // } while (num <= 100 && num !== null);
+
+      let count = 1;
+      do {
+        console.log("count :" + count);
+        count++;
+      } while (count < 5);
+
+      let f = 2 + 2;
+      switch (f) {
+        case 3:
+          console.log("작아");
+          break;
+
+        case 4:
+          console.log("일치");
+          break;
+
+        case 5:
+          console.log("많아");
+          break;
+        default:
+          alert("파악불가");
+      }
+
+      // let browser = prompt("사용하고 계신 브라우저를 입력하세요");
+
+      // if (browser === null || browser === "") {
+      //   console.log("현재 페이지가 괜찮아 보이길 바랍니다!");
+      // } else if (browser === "edge") {
+      //   console.log("edge를 사용하고 계시네요");
+      // } else if (
+      //   browser === "chrome" ||
+      //   browser === "firefox" ||
+      //   browser === "safari" ||
+      //   browser === "opera"
+      // ) {
+      //   console.log("저희 지원 서비스를 사용하고 계십니다");
+      // } else {
+      //   console.log("올바른 형식으로 입력해 주세요");
+      // }
+
+      // let aa = +prompt("a?", "");
+      // switch (aa) {
+      //   case 0:
+      //     console.log(0);
+      //     break;
+      //   case 1:
+      //     console.log(1);
+      //     break;
+      //   case 2:
+      //   case 3:
+      //     console.log("2,3");
+      //     break;
+      // }
+
+      function showMessage(from, text) {
+        alert(from + " : " + text);
+      }
+      showMessage("jin ah", "hi!");
+      showMessage("john", "yes, hi!");
+
+      function message(from, text = anotherFunction()) {
+        alert(from + " : " + text);
+      }
+      message("jin ah", "haha");
+    </script>
+  </body>
+</html>

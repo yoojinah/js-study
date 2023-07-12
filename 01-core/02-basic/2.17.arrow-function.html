@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="width: 100vw; height: 100vh">
+    <script>
+      document.querySelector("body").addEventListener("click", function () {
+        console.log("-- 함수 선언문 --");
+        // this : 함수를 호출한 객체(엘리먼트) 이 함수는 body가 this
+        // this가 문맥에 따라서 바뀜
+        console.log(this);
+      });
+
+      // 화살표 함수() =>는 this가 무조건 window임
+
+      document.querySelector("body").addEventListener("click", () => {
+        console.log("-- 화살표 함수 --");
+        console.log(this);
+      });
+
+      // 화살표 함수
+      // 표현식이 구문이 한개라면 구문 결과가 return값 / {return}, 없이 한줄로 마무리
+      let sum = (a, b) => a + b;
+      console.log(sum(2, 3));
+
+      // let age = prompt("나이를 알려주세요.", 18);
+
+      // let welcome = age < 18 ? () => alert("안녕") : () => alert("안녕하세요!");
+
+      // welcome();
+
+      // let ask = (question, yes, no) => {
+      //   if (confirm(question)) yes();
+      //   else no();
+      // };
+
+      // ask(
+      //   "동의함?",
+      //   () => alert("동의"),
+      //   () => alert("비동의")
+      // );
+
+      // let age = prompt("나이를 알려주세요", 18);
+
+      // let welcome = age < 18 ?
+      //   () => alert("안녕") :
+      //   () => alert("안녕하세요");
+
+      // welcome();
+
+      // let str = prompt("문자열을 입력해 주세요", "abc");
+
+      // function palindrome(str) {
+      //   const formattedStr = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+      //   const reversStr = formattedStr.split("").reverse().join("");
+
+      //   return formattedStr === reversStr;
+      // }
+
+      // palindrome(str);
+
+      function addNumber(a, b) {
+        if (typeof a === "number" && typeof b === "number") {
+          return a + b;
+        } else {
+          return null;
+        }
+      }
+      console.log(addNumber(5, 4));
+      console.log(addNumber("오", "사"));
+
+      function ask(question, yes, no) {
+        if (confirm(question)) yes();
+        else no();
+      }
+
+      ask(
+        "동의하십니까?",
+        () => alert("네 동의합니다."),
+        () => alert("아니오 동의하지 않습니다.")
+      );
+
+      function login(id, password) {
+        id = prompt("아이디를 입력하세요");
+        password = prompt("비밀번호를 입력하세요");
+        if (id === "admin" && password === "password") {
+          alert("로그인 성공");
+        } else {
+          alert("로그인 실패");
+        }
+      }
+      login();
+    </script>
+  </body>
+</html>

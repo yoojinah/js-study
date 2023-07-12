@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getName() {
+        return "";
+      }
+      let a = 0;
+      let b = "abc";
+
+      // ||는 첫번째 truthy값을 반환한다
+      // a는 falsy. b는 truthy
+      // b가 truthy값이라 b값을 c에 반환한 것
+      //
+
+      // let age = prompt("나이를 입력하세요");
+      // if (age >= 14 && age <= 90) {
+      //   alert("포함 됩니다.");
+      // } else {
+      //   alert("포함되지 않습니다.");
+      // }
+
+      // let login = prompt("이름을 입력하세요.");
+
+      // if (login === "Admin") {
+      //   let password = prompt("비밀번호 :", "");
+      //   if (password == "TheMaster") {
+      //     alert("환영합니다!");
+      //   } else if (password == "" || password == null) {
+      //     alert("취소되었습니다.");
+      //   } else {
+      //     alert("로그인 실패");
+      //   }
+      // } else if (login == "" || login == null) {
+      //   alert("취소되었습니다.");
+      // } else {
+      //   alert("인증되지 않은 사용자입니다.");
+      // }
+
+      // let score = prompt("영어 점수를 입력하세요").trim();
+      // if (score === "") {
+      //   alert("점수를 정확히 입력해 주세요");
+      // } else if (score >= 90) {
+      //   alert("A");
+      // } else if (score >= 80 && score < 90) {
+      //   alert("B");
+      // } else if (score >= 70 && score < 80) {
+      //   alert("C");
+      // } else if (score >= 60 && score < 70) {
+      //   alert("D");
+      // } else if (score < 60) {
+      //   alert("F");
+      // } else {
+      //   alert("올바른 점수를 입력해 주세요");
+      // }
+
+      // let numb = prompt("숫자를 입력하세요").trim();
+      // if (numb === "") {
+      //   alert("숫자를 정확히 입력해 주세요");
+      // } else if (numb % 2 === 0) {
+      //   alert(numb + "는 짝수");
+      // } else {
+      //   alert(numb + "는 홀수");
+      // }
+
+      // let year = prompt("연도를 입력하세요").trim();
+      // if (year === "") {
+      //   alert("올바른 연도를 입력하세요");
+      // } else if (year % 400 === 0) {
+      //   alert("윤년입니다.");
+      // } else if (year % 4 === 0 && year % 100 !== 0) {
+      //   alert("윤년입니다.");
+      // } else {
+      //   alert("윤년이 아닙니다.");
+      // }
+
+      let month = prompt("월을 입력하세요.").trim();
+      if (month >= 3 && month <= 5) {
+        alert("봄");
+      } else if (month >= 6 && month <= 8) {
+        alert("여름");
+      } else if (month >= 9 && month <= 11) {
+        alert("가을");
+      } else {
+        alert("겨울");
+      }
+    </script>
+  </body>
+</html>

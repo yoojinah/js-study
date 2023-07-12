@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .login_wrapper {
+        background-color: antiquewhite;
+        width: 600px;
+        height: 700px;
+      }
+      .login_form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <div class="login_wrapper">
+        <form class="login_form" action="">
+          <input
+            type="text"
+            id="LOGIN_ID"
+            class="login_text"
+            name="id"
+            placeholder="이름"
+          />
+          <input
+            type="password"
+            id="LOGIN_PASSWORD"
+            class="login_text"
+            name="password"
+            placeholder="비밀번호"
+          />
+          <button type="button" id="LOGIN_BTN" class="login_btn" disabled>
+            로그인
+          </button>
+        </form>
+      </div>
+    </article>
+
+    <script>
+      const loginForm = document.querySelector(".login_form");
+      const loginInput = document.querySelector(".login_form input");
+      const loginId = document.getElementById("LOGIN_ID");
+
+      function onLoginSubmit(event) {
+        event.preventDefault();
+        const username = loginId.value;
+        if (username === "") {
+          alert("이름을 바르게 입력하세요");
+        } else if (username.length > 15) {
+          alert("올바른 형식의 이름을 입력하세요");
+        }
+      }
+      loginForm.addEventListener("submit", onLoginSubmit);
+
+      for (let dan = 2; dan <= 9; dan++) {
+        for (let i = 1; i <= 9; i++) {
+          console.log(dan + "x" + i + "=" + dan * i);
+        }
+      }
+
+      const color = ["red", "yellow", "blue"];
+      // for (let i = 0; i < color.length; i++) {
+      //   console.log(color[i]);
+      // }
+
+      color.forEach((value, index, array) =>
+        console.log(value, index, array.length)
+      );
+
+      const num1 = [10, 30, 50, 70, 90];
+      const num2 = new Array(20, 40, 60, 80, 100);
+
+      // let mixedArr = ["a", 1, "b", 2, new Data(), "today"];
+      let objArr = [
+        {
+          id: 20230711,
+          name: "jin ah",
+          dept: "software",
+        },
+        {
+          id: 20230712,
+          name: "ho ji",
+          dept: "management",
+        },
+        {
+          id: 20192012,
+          name: "KangDongSu",
+          dept: "Computer Engineering",
+        },
+      ];
+
+      console.log(objArr.value);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 변수에 함수를 생성해서 할당
+      // let sayHi = function () {
+      //   alert("hello");
+      // };
+      // let func = sayHi;
+      // func();
+
+      function ask(question, yes, no) {
+        // let resulit = confirm(question);
+        if (confirm(question)) yes();
+        else no();
+      }
+      function showYes() {
+        console.log("called showok");
+        alert("동의");
+      }
+      function showNo() {
+        alert("비동의");
+      }
+      ask("개인정보를 동의하십니까?", showYes, showNo);
+
+      // 인라인 함수 (잘 사용하지는 않음)
+      ask("개인정보를 동의하십니까?", function () {
+        alert("동의하셨음");
+      });
+    </script>
+  </body>
+</html>

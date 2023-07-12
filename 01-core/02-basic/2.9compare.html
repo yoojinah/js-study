@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // true값 비교시 === 를 사용 ==는 사용하지 않음 (형변환x / 자료형까지 확실히 비교)
+      // false값 비교시 !== 를 사용 (형변환x / 자료형까지 확실히 비교)
+      let a = +"5";
+      alert(a === 5);
+      // 자바스크립트는 초기값을 설정을 잘 해줘야함
+      /* 
+        const obj = {};
+        const arr = [];
+        let a = "";
+        let b = 0;
+        let c = false;
+      */
+
+      // 예외처리 코드 -> 초기화
+      /*
+        if (typeof a === "undefined") {
+          a = "";
+        } 
+      */
+    </script>
+  </body>
+</html>

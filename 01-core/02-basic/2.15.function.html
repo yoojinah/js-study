@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // var userMessage = "홍길동";
+      // function showMessage(userMessage) {
+      //   let name = prompt("이름을 입력해주세요");
+      //   let msg = "안녕하세요";
+      //   alert(name + " 님" + msg);
+      // }
+      // showMessage();
+
+      // function show(name = userMessage, text) {
+      //   // text 매개변수에 문자열이 있으면 text반환
+      //   // text 매개변수에 문자열 없으면 '안녕' 반환
+      //   let msg = text || "안녕";
+      //   alert(`${name}님, ${msg}`);
+      // }
+
+      // show("");
+
+      // function checkAge(age) {
+      //   if (age >= 18) {
+      //     return true;
+      //   } else {
+      //     alert("보호자의 동의가 필요합니다");
+      //   }
+      // }
+
+      // let age = prompt("나이입력", 18);
+      // if (checkAge(age)) {
+      //   alert("접속 허용");
+      // } else {
+      //   alert("접속 불가");
+      // }
+
+      // function checkAgee(age) {
+      //   let ages = prompt("나이 입력");
+      //   if (ages >= 18) {
+      //     alert("접속허용");
+      //     return true;
+      //   } else {
+      //     return confirm("보호자 동의 필요");
+      //   }
+      // }
+      // checkAgee();
+
+      // function min(a, b) {
+      //   return a < b ? a : b;
+      // }
+
+      // let numbers = [2, 3, 4, 5, 6, 2, 42, 66];
+      // function totalNum(numbers) {
+      //   let sum = 0;
+      //   for (let i = 0; i < numbers.length; i++) {
+      //     sum += numbers[i];
+      //   }
+      //   return sum;
+      // }
+      // let sum = totalNum(numbers);
+
+      // console.log(sum);
+
+      let numbers = [1, 2, 3, 4, 5];
+      function calculaterAverage(numbers) {
+        let average = 0;
+        for (let i = 0; i < numbers.length; i++) {
+          average += numbers[i];
+        }
+        return average / numbers.length;
+      }
+      let average = calculaterAverage(numbers);
+      console.log(average);
+
+      let reverseStr = "hello";
+      function reverseString(reverseStr) {
+        return reverseStr.split("").reverse().join("");
+      }
+
+      let ss = reverseString(reverseStr);
+      console.log(ss);
+    </script>
+  </body>
+</html>
