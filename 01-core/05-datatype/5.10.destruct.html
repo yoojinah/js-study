@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const user = {
+        lastName: "Bora",
+        firstName: "Lee",
+      };
+
+      // firstName 변수에는 배열 첫번재 요소 대입
+      // lastName 변수에는 배열 두번째 요소 대입
+      const [firstName, lastName] = Object.values(user);
+      console.log(firstName, lastName);
+
+      // split()을 이용한 다른 방식
+      const [first, last] = "Jora Dee".split(" ");
+      console.log(first, last);
+
+      let option = {
+        with: 100,
+        heught: 200,
+      };
+      const { with: w, heught: h } = option;
+      console.log(w * h);
+
+      let props = [
+        { name: "jin ah", age: 27 },
+        { name: "kil dong", age: 30 },
+        { name: "yoo jin", age: 17 },
+      ];
+      const names = props.map(({ name }) => name).join(" - ");
+      console.log(`이름은 ${names} 입니다.`);
+
+      let student = {
+        name: "min ho",
+        age: 20,
+        major: "Computer Science",
+      };
+      const { name, age, major } = student;
+      console.log(name);
+      let studentss = [
+        { name: "jin ah", age: 27, major: "css" },
+        { name: "min ho", age: 33, major: "html" },
+        { name: "jae joon", age: 15, major: "java" },
+      ];
+      const [student1, student2, student3] = studentss;
+      // const { name: name1, age: age1, major: major1 } = student1;
+      // console.log(name1);
+
+      let people = [
+        { name: "John", age: 23 },
+        { name: "Adam", age: 30 },
+        { name: "Zoe", age: 28 },
+        { name: "Emma", age: 20 },
+      ];
+
+      const checkJohn = people.some((person) => person.name === "John");
+      console.log(checkJohn);
+
+      const allPeple = people.reduce((person, current) => {
+        return person + current.age;
+      }, 0);
+      console.log(allPeple);
+
+      const maximemAge = people.filter((person) => person.age > 25);
+      console.log(maximemAge);
+
+      const allNames = people
+        .splice(name)
+        .map((person) => person.name)
+        .join(", ");
+      console.log(allNames);
+
+      let sentence = "Hello world";
+      const strs = sentence
+        .split("")
+        .map((str) => str.toUpperCase())
+        .join("");
+      console.log(strs);
+
+      const strList = people.map(
+        (person) => `이름 : ${person.name}, 나이 : ${person.age}`
+      );
+      console.log(strList);
+
+      let grades = [90, 85, 92];
+      const [math, science, english] = grades;
+      console.log(math, science, english);
+
+      let students = {
+        name: "John",
+        age: 20,
+        major: "Computer Science",
+        grades: {
+          math: 90,
+          science: 85,
+          english: 92,
+        },
+      };
+
+      const {
+        name1,
+        age1,
+        major1,
+        grades: {
+          math: mathGrade,
+          science: scienceGrade,
+          english: englishGrade,
+        },
+      } = students;
+      const {} = grades;
+      console.log(mathGrade);
+
+      let data = ["John", 20, "Computer Science", [90, 85, 92]];
+
+      const [uname, uage, umajor, [maths, sciences, englishs]] = data;
+      console.log(maths);
+    </script>
+  </body>
+</html>

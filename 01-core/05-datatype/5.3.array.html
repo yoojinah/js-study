@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const obj = {}; // 객체
+      const arr = []; // 배열
+
+      // 리터럴으로 초기화 (지정해놓고 가는 값)
+      let fruits = ["사과", "오렌지", "자두"];
+
+      // 탬블릿 리터럴
+      let ll = `
+        첫번째 과일 : ${fruits[0]},
+        두번째 과일 : ${fruits[1]},
+        세번째 과일 : ${fruits[2]},
+      `;
+
+      // 배열에 요소 추가
+      fruits[3] = "참외";
+
+      fruits.push("수박");
+      fruits.pop();
+      fruits.unshift("복숭아");
+      console.log(fruits);
+
+      // 배열을 문자열로 변환하여 출력
+      console.log(fruits.toString());
+      console.log(typeof fruits);
+      fruits.name = "과일목록";
+      console.log(fruits);
+
+      arrs = [
+        "사과",
+        { name: "이보라" },
+        true,
+        function () {
+          alert("안녕하세요.");
+        },
+      ];
+
+      // 배열요소 탐색
+      for (let fruit of fruits) {
+        console.log(fruits);
+      }
+      console.log("===============================");
+      for (let index in fruits) {
+        console.log(fruits[index]);
+      }
+
+      let matrix = [
+        ["yoo", "01012345678", 27],
+        ["kim", "01013445678", 37],
+        ["hong", "0101265678", 20],
+      ];
+      let matrix2 = [
+        ["yoo", ["010", "02", "032"], 27],
+        ["kim", ["010", "02", "032"], 37],
+        ["hong", ["010", "02", "032"], 20],
+      ];
+
+      matrix[0][0]; // d첫번째 데이터[0]의 이름[0]
+      matrix[0][1]; // d첫번째 데이터[0]의 전화번호[1]
+      matrix[0][0]; // d첫번째 데이터[0]의 나이[2]
+
+      matrix2[0][1][1]; // 첫번쨰 데이터[0]에 전화번호들[1]에 "02"[2] 번호 찾기
+      console.log(matrix2[0][1][1]);
+
+      const music = ["Jazz", "Blues"];
+      music.push("Rock-n-Roll");
+      music[Math.floor((music.length - 1) / 2)] = "Classics";
+      console.log(music.shift());
+      console.log(music.unshift("Rap", "Reggae"));
+      console.log(music);
+
+      let list = {
+        name: "jinah",
+        number: {
+          home: "02",
+          office: "032",
+          phone: "010",
+        },
+        age: 27,
+      };
+      console.log(list.number.home);
+
+      let list2 = {
+        name: "jinah",
+        music: ["jazz", "classic", "rap", "reggae"],
+        age: 27,
+      };
+
+      console.log(list2.music[1]);
+
+      let arrr = ["a", "b"];
+
+      arrr.push(function () {
+        // alert("yes!!");
+      });
+      console.log(arrr[2]);
+
+      function sumInput() {
+        let count = 0;
+        let numbers = [];
+        while (count < 3) {
+          let ask = prompt("숫자를 입력해 주세요", 0);
+
+          if (ask === "" || ask === null || !isFinite(ask)) {
+            break;
+          }
+          numbers.push(+ask);
+          count++;
+        }
+
+        let sum = 0;
+        for (let num of numbers) {
+          sum += num;
+        }
+        return sum;
+      }
+
+      alert(sumInput());
+
+      const arrList = [1, -2, 3, 4, -9, 6];
+
+      function getMaxSubSum(ara) {}
+    </script>
+  </body>
+</html>

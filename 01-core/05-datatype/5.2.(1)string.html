@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let str = "Widget with id";
+
+      console.log(str.indexOf("widget")); // 문자열 인덱스(위치) 반환
+      console.log(str.indexOf("Widget"));
+      console.log(str.indexOf("id"));
+      console.log(str.indexOf("id", 2));
+
+      if (str.indexOf("ed") > -1) {
+        console.log("해당 문자열 존재");
+      } else {
+        console.log("없음");
+      }
+
+      console.log("------------");
+
+      // 해당 문자열이 있는지 없는지만 찾고 싶다면 includes가 더 적합
+      if (str.includes("id")) {
+        console.log("있음");
+      } else {
+        console.log("없음");
+      }
+
+      let strs = "stringify";
+      // slice(start, end) end까지(end는 미포함)
+      console.log(strs.slice(0, 5));
+
+      let usFirst = "john";
+      console.log(usFirst[0].toUpperCase() + usFirst.slice(1));
+
+      let cStr = "Hello have a goOd day";
+
+      let cc = cStr.replace(/o/gi, "2");
+
+      console.log(cc);
+
+      let ss = "ji0n a22h0 da";
+      let ee = ss.replace(/[^0-9]/gi, "");
+      console.log(ee);
+
+      function wos() {
+        let aa = "jinahda h0aha";
+        let tt = aa.replace(/[0-9]/g, "");
+        return tt;
+      }
+
+      console.log(wos());
+
+      function extractCurrencyValue(tr) {
+        tr = "fshkjh234j2k3nwjkedj22";
+        let tt = tr.replace(/[0-9]/gi, "");
+        return tt;
+      }
+      console.log(extractCurrencyValue());
+
+      let rere = "Lorem psum dolor sit amet, psum dolor sit amet,";
+      let maxLength = 20;
+
+      console.log(rere.slice(0, 20));
+      function truncate(string, maxLength) {
+        if (string.length > maxLength) {
+          return string.slice(0, maxLength - 1) + "...";
+        }
+        return string;
+      }
+
+      console.log(truncate(rere, maxLength));
+
+      function rev(a) {
+        return a.split("").reverse().join("");
+      }
+
+      const reversString = "Hello World!";
+      const ty = rev(reversString);
+      console.log(ty);
+    </script>
+  </body>
+</html>

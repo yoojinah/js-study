@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [15, 1, 2];
+      // sort의
+      // 첫번째 매개변수가 작을 때 음수 변환
+      // 정순 정렬
+
+      // a가 작고 b가 클 때 --> a - b (정순)
+      // a가 크고 b가 작을 때 -->  b - a  (역순)
+      arr.sort((a, b) => a - b); // 정순
+      arr.sort((a, b) => b - a); // 역순
+      console.log(arr);
+
+      let atrArr = ["John", "pete", "Mary"];
+      atrArr.sort((a, b) => a.localeCompare(b));
+      console.log(atrArr);
+
+      let users = [
+        { id: 1, name: "John" },
+        { id: 2, name: "Pete" },
+        { id: 3, name: "Mary" },
+      ];
+
+      users.sort((a, b) => a.name.localeCompare(b.name));
+      // a.name이 b.name보다 앞쪽이면 음수
+      console.log(users);
+
+      let names = "Bilbo,Gandalf,Nazgul";
+
+      // 구분자로 나누어 배열을 만듬 (요소를 배열로 만들어 구분)
+      const nameArr = names.split(",");
+      console.log(nameArr);
+
+      // 배열 요소 사이에 구분자를 넣어 문자열로 (배열을 구분할 때)
+      const joinArr = nameArr.join(" - ");
+      console.log(joinArr);
+
+      const usersNames = users.map((u) => u.name).join(", ");
+      document
+        .querySelector("body")
+        .insertAdjacentHTML("afterbegin", `<div>${usersNames}</div>`);
+
+      let arrNumbers = [1, 2, 3, 4, 5];
+      // (accumulator, item, index, array) = >
+      // 누산기(sum += item) : 누적해서 더해 저장
+
+      // reduce(계산할 함수, 초기값);
+      // 1회 반복 : sum = 0, num = 1 ---> 2
+      // 2회 반복 : sum = 1, num = 2 ---> 3
+      const resulit = arrNumbers.reduce((sum, num) => sum + num, 0);
+      console.log(resulit);
+
+      // arr.sum(요소마다 실행항 함수)
+      // 함수의 반환이 true이면 조건에 맞는 요소가 있음
+      const res = users.some((user) => user.name === "John");
+      console.log(res);
+      const res2 = users.some((user) => user.id > 2);
+      console.log(res2);
+
+      const people = [
+        { name: "John", age: 23 },
+        { name: "Adam", age: 30 },
+        { name: "Zoe", age: 28 },
+        { name: "Emma", age: 20 },
+      ];
+
+      const revPeople = people.sort((a, b) => a.name.localeCompare(b.name));
+      console.log(revPeople);
+
+      const checkJohn = people.some((user) => user.name === "John");
+      console.log(checkJohn);
+
+      const checkAge = people.filter((person) => person.age >= 25);
+      console.log(checkAge);
+
+      const joinName = people.map((person) => person.name).join(", ");
+      console.log(joinName);
+
+      const maxAge = people.reduce((oldage, count) => {
+        if (oldage.age > count.age) {
+          return oldage;
+        } else {
+          return count;
+        }
+      });
+      console.log(maxAge);
+
+      const words = ["apple", "banana", "cherry", "date"];
+      const longStr = words.reduce((str, current) => {
+        if (str.length > current.length) {
+          return str;
+        } else {
+          return current;
+        }
+      });
+      console.log(longStr);
+
+      let sentence = "hello world";
+      const aaSent = sentence
+        .split(" ")
+        .map((item) => item.toUpperCase())
+        .join(" ");
+      console.log(aaSent);
+
+      const personList = people.map(
+        (person) => `이름 : ${person.name} , 나이 : ${person.age}`
+      );
+      console.log(personList);
+
+      const aa = sentence
+        .split(" ")
+        .map((item) => item.toUpperCase())
+        .join(" ");
+      console.log(aa);
+
+      const averageAge =
+        people.reduce((total, person) => total + person.age, 0) / people.length;
+      console.log(averageAge);
+
+      const aStr = people.some((person) => person.name.includes("a"));
+      console.log(aStr);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 객체 안에 객체를 추가할때는 화살표 함수는 객체 속성값에
+      // 접근이 불가하기에 객체 안에서는 화살표 함수 사용 X
+      let user = {
+        name: "john",
+        age: 23,
+        sayHi() {
+          alert("안녕!");
+        },
+      };
+
+      // 속성을 추가한 것이고 그 추가한 속성이 함수인것
+      // user.sayHi = function () {
+      //   alert("안녕하세요");
+      // };
+
+      // function sayHi() {
+      //   alert(this.name);
+      // }
+
+      // this 값은 런타임에 결정되고 문맥에 따라 달라짐
+      // // 함수 실행 문맥이 window라서 이때의 this는 window
+      // sayHi(); // 구조 ? --> window.sayHi();
+
+      // 이때의 this는 user.sayHi();
+      user.sayHi();
+    </script>
+  </body>
+</html>

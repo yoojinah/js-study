@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // let colors = ["Red", "Blue", "Green", "Yellow", "Black"];
+      // function removeColors(colors) {
+      //   const index = colors.indexOf("Green");
+      // }
+      // console.log(removeColors());
+
+      let arr = [0, 1, 2, 3, 4, 5];
+      function firstThree(arr) {
+        return arr.splice(0, 3);
+      }
+      console.log(firstThree(arr));
+
+      const fruit1 = ["apple", "banana", "cherry"];
+      const fruit2 = ["date", "elderberry", "fig"];
+
+      function mergeFruit(fruit1, fruit2) {
+        return (fruits = fruit1.concat(fruit2));
+      }
+
+      // const merge = mergeFruit(fruit1, fruit2);
+      console.log(mergeFruit(fruit1, fruit2));
+
+      const arrList = [1, 42, 5, 34, 64, 23, 21, 4];
+      let max = Math.max(arrList);
+      console.log(max);
+    </script>
+  </body>
+</html>

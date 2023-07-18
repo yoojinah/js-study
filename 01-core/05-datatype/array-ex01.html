@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const num = [1, 2, 3, 4, 5, 6];
+      let threeNum = num.map((number) => {
+        return number / 3 === 0;
+      });
+      console.log(threeNum);
+
+      const fruits = ["apple", "banana", "cherry", "apple"];
+      const findApp = fruits.findIndex((name) => {
+        return name === "apple";
+      });
+      console.log(findApp);
+
+      const numb = [2, 4, 5, 3, 42, 7];
+      const gobNum = numb.map((item) => {
+        return item * 5;
+      });
+      console.log(gobNum);
+
+      const number = [1, 23, 4, 5, 2, 35, 2, 6];
+      const findMax = number.filter((item) => {
+        return item >= 5;
+      });
+      console.log(findMax);
+
+      const fruit = ["apple", "orange", "banana", "cherry"];
+
+      const findOrange = fruit.find((fruit) => {
+        return fruit === "orange";
+      });
+      console.log(findOrange);
+
+      const numList = [1, 2, 3, 4, 5, 6, 7];
+      const plusThree = numList.map((item) => {
+        return item + 3;
+      });
+      console.log(plusThree);
+
+      const numStr = ["일", 2, "삼", 4, 5];
+      const notNum = numStr.filter((item) => {
+        return typeof item !== "number";
+      });
+      console.log(notNum);
+
+      const findTwo = numList.findIndex((item) => {
+        return item === 2;
+      });
+      console.log(findTwo);
+
+      const twoNumer = numList.map((item) => {
+        return item ** 2;
+      });
+      console.log(twoNumer);
+
+      const findBnana = fruits.find((name) => {
+        return name === "banana";
+      });
+      console.log(findBnana);
+
+      const list = ["Firstttttttt", "secondddddddddddddddd", "trird", "Four"];
+      const findLow = list.find((item) => {
+        return /^[a-z]+$/.test(item);
+      });
+      console.log(findLow);
+
+      const allUp = list.map((item) => {
+        return item.toUpperCase();
+      });
+      console.log(allUp);
+
+      const longLength = list.find((item) => {
+        return item.length === Math.max();
+      });
+      console.log(longLength);
+
+      const changeStr = numList.map((str) => {
+        return (str = String(str));
+      });
+      console.log(changeStr);
+      function ask() {
+        if (typeof changeStr[0] === "string") {
+          console.log("문자열");
+        } else {
+          console.log("숫자");
+        }
+      }
+      console.log(ask());
+
+      const nn = [5, 2, 3, 4, 5, 2, 1, 4, 5, 6];
+
+      let lastIndex = nn.reverse().findIndex((element) => element === 5);
+      if (lastIndex !== -1) {
+        lastIndex = nn.length - 1 - lastIndex;
+      }
+
+      let lastIndexx = nn.reverse().findIndex((item) => item === 2);
+      if (lastIndexx !== -1) {
+        lastIndexx = nn.length - 1 - lastIndexx;
+      }
+      console.log(lastIndex);
+      console.log(lastIndexx);
+
+      const str = ["hah", "haha", "jinah", "yoojin", "dsh", "ert"];
+      const find = str.filter((item) => {
+        return item.length === 3;
+      });
+      console.log(find);
+
+      const upCase = str.map((item) => {
+        return item.toUpperCase();
+      });
+      console.log(upCase);
+
+      const nnn = [5, 2, 3, 4, 5, 2, 1, 4, 5, 6];
+      const two = [
+        ...new Set(
+          nnn.filter((item) => {
+            return item % 2 === 0;
+          })
+        ),
+      ];
+      console.log(two);
+      const numbers = [1, 2, 3];
+
+      console.log(...numbers);
+
+      const ss = str.map((item) => {
+        return item.charAt(0).toUpperCase() + item.slice(1);
+      });
+      console.log(ss);
+    </script>
+  </body>
+</html>

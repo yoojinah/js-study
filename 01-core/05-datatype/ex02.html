@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const num = [3, 9, 2, 5, 8];
+
+      const fruits = ["사과", "바나나", "딸기", "오렌지"];
+      const person = {
+        name: "alice",
+        age: 30,
+        city: "london",
+        score: ["수학", "영어", "체육"],
+        grade: {
+          math: "1학년",
+          korean: "2학년",
+          english: "3학년",
+        },
+      };
+
+      let gradeCancle = Object.values(person.grade);
+      gradeCancle.splice("1학년", 1);
+      console.log(gradeCancle);
+      const delate = 2;
+      fruits.splice(delate, 1);
+      console.log(fruits);
+      person.age--;
+      console.log(person.age);
+      fruits.push("수박");
+      console.log(fruits);
+
+      console.log(fruits.length);
+
+      let minScore = Object.values(person.score);
+      let minScorePrint = Math.min(...minScore);
+      console.log(minScorePrint);
+
+      let personLength = Object.keys(person).length;
+      console.log(personLength);
+
+      console.log("---------------------------------");
+      for (let i = 0; i < num.length; i++) {
+        if (num[i] % 2 !== 0) {
+          console.log(num[i]);
+        }
+      }
+      person.age++;
+      console.log(person.age);
+
+      let ch = 0;
+      for (let i = 0; i < num.length; i++) {
+        ch += num[i];
+      }
+      console.log(ch);
+
+      let onn = Object.values(person.score);
+      let max = Math.max(...onn);
+      console.log(max);
+      console.log("************************************");
+
+      const colors = ["빨강", "파랑", "노랑", "초록", "주황"];
+
+      colors[3] = "흰색";
+
+      colors.push("보라");
+      console.log(colors);
+
+      let delateScore = person.score.indexOf("가정");
+      if (delateScore !== -1) {
+        person.score.splice(delateScore, 1);
+        console.log("있음");
+      } else {
+        console.log("없음");
+      }
+
+      const numbers = [10, 5, 8, 1, 3, 2];
+
+      let numbersMax = Math.max(...numbers);
+      console.log(numbersMax);
+
+      const text = "Hello, world! How are you?";
+
+      console.log(text.length);
+      console.log(text.toUpperCase());
+      console.log(text.replace("world!", "friend"));
+      console.log(text.indexOf("w"));
+      console.log(text.startsWith("H"));
+      console.log(text.endsWith("you?"));
+
+      const tx = "Hello world!";
+
+      console.log(tx.toLowerCase());
+      // let plusNb = nb + 10;
+      // console.log(plusNb);
+
+      let nb = 10;
+      nb = String(nb);
+      if (typeof nb === "number") {
+        console.log("숫자임");
+      } else {
+        console.log("숫자아님");
+      }
+    </script>
+  </body>
+</html>

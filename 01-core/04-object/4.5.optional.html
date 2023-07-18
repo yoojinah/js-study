@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let user = {};
+
+      // 에러 이유
+      // user.address까지는 undefinde로 ok
+      // 하지만 adress.street 값을 넣으려고 하니 오류
+      // console.log(user.address.street);
+
+      console.log(user.address?.street);
+      // 첫번째 undefinde속성에 접근 (오류 x)
+
+      function copyObj(obj) {
+        let copyeObj = JSON.parse(JSON.stringify(obj));
+      }
+
+      let animal = {
+        type: "dog",
+        namr: "happy",
+      };
+
+      let dogInfo = Object.assign({}, animal);
+
+      dogInfo.name = "cooc";
+      console.log(animal.namr);
+    </script>
+  </body>
+</html>

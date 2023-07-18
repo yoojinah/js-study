@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = ["orange", "kiwi", "kiwi", "apple"];
+      // 배열을 Set으로 변환
+      // 중복을 제거할 때 주로 사용하고
+      // 다른 함수(map, join등)를 사용하려면 Set을 다시 배열로 변환해야 사용할 수 있음
+      const set = new Set(arr);
+
+      // Set을 배열로 변환
+      let reduceArr = Array.from(set);
+      console.log(reduceArr);
+    </script>
+  </body>
+</html>

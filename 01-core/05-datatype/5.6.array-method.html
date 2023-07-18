@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let users = [
+        { id: 1, name: "John" },
+        { id: 2, name: "Pete" },
+        { id: 3, name: "Mary" },
+      ];
+      let name = "Pete";
+      // 배열.find(요소마다 실행할 함수)
+      // 실행할 함수는 boolean값을 반환해야함
+      // 배열.find(요소변수 => boolean을 반환하는 식)
+      // 배열.find(요소변수 => {... return  true/false를 반환하는 식}})
+      let user = users.find((item) => {
+        // users배열에 pete라는 이름이 나올떄까지 반복한다.
+        // pete를 찾으면 값을 반환하고 반복 종료
+        return item.name === name;
+      });
+
+      // find에서 반환한 객체는 undefined일 수 있다,
+      // 있으면 - > name 속성 출력
+      // 없으면 - > undefined
+      console.log("니가 찾은 유저 이름 : " + user?.name);
+
+      // filter()
+      // 반환값이 true인 모든 요소를 새로운 배열로 생성해서 출력
+      // false면 생성된 새로운 []빈 배열로 반환
+      const someUser = users.filter((item) => item.id < 3);
+      console.log(someUser);
+
+      // map()  많이 씀!!!!
+      // 뽑아내고 싶은 값/객체를 꼭! 반환해줘야함
+      const userNames = users.map((item) => item.name);
+      console.log(users);
+      console.log(userNames);
+
+      const numbers = [1, 2, 3, 4, 5];
+
+      const kopNumbers = numbers.map((item) => item ** 2);
+
+      console.log(kopNumbers);
+
+      const fruits = ["banana", "apple", "orange", "pineapple", "kiwi"];
+      let findApple = fruits.find((item) => {
+        return item === "apple";
+      });
+
+      const num = [1, 4, 5, 7, 2, 9, 3];
+      let findNum = num.filter((item) => item >= 10);
+
+      const persons = [
+        {
+          name: "kim",
+          skills: ["javascript", "html", "css"],
+        },
+        {
+          name: "lee",
+          skills: ["java", "python", "sql"],
+        },
+        {
+          name: "park",
+          skills: ["java", "javascript", "css"],
+        },
+      ];
+      let javaSkill = persons.filter((user) => {
+        user.skills.indexOf("java");
+      });
+
+      const people = [
+        { name: "John", age: 28 },
+        { name: "Jane", age: 24 },
+        { name: "Mike", age: 30 },
+      ];
+
+      const averageAge =
+        people.reduce((total, curren) => total + curren.age, 0) / people.length;
+      console.log(averageAge);
+      let peopleName = people.map((name) => {
+        return name.name;
+      });
+
+      const words = [
+        "javascript",
+        "python",
+        "java",
+        "c",
+        "ruby",
+        "rust",
+        "yoojinah",
+      ];
+      let fiveLength = words.filter((item) => {
+        return item.length > 5;
+      });
+
+      const peoples = [
+        { name: "John", age: 28 },
+        { name: "Jane", age: 24 },
+        { name: "Mike", age: 30 },
+      ];
+
+      let agePeo = peoples.filter((people) => {
+        return people.age > 25;
+      });
+
+      const chars = ["a", "b", "c", "a", "d", "e", "f", "a"];
+      let slitA = chars.filter((item) => {
+        return item !== "a";
+      });
+
+      const numb = [1, 2, 3, 4, 5];
+
+      let plusNum = numb.map((item) => {
+        return item + 5;
+      });
+
+      const names = ["Jane", "John", "Jim", "Jill", "Jack"];
+      let findJohn = names.findIndex((name) => {
+        return name === "John";
+      });
+
+      console.log(findApple);
+      console.log(findNum);
+      console.log(javaSkill);
+      console.log(peopleName);
+      console.log(fiveLength);
+      console.log(agePeo);
+      console.log(slitA);
+      console.log(plusNum);
+      console.log(findJohn);
+    </script>
+  </body>
+</html>

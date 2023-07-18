@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="elem"><span>Element</span></div>
+    <ul>
+      <li>1-1</li>
+      <li>1-2</li>
+    </ul>
+    <ul>
+      <li>2-1</li>
+      <li>2-2</li>
+    </ul>
+
+    <input id="r1" type="radio" name="rdo" type="radio" value="1" />
+    <input id="r2" type="radio" name="rdo" type="radio" value="2" />
+    <input id="r3" type="radio" name="rdo" type="radio" value="3" />
+    <script src="selector.js"></script>
+    <style>
+      /* 띄어쓰기 하면 안됨 */
+      input[name="rdo"] {
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>시작</div>
+
+    <ul>
+      <li>
+        <b>항목<data>1</data></b
+        >b>
+      </li>
+      <li>
+        <b>항목<data>2</data></b>
+      </li>
+      <li>
+        <b>항목<data>3</data></b>
+      </li>
+    </ul>
+    <div>끝</div>
+
+    <script>
+      const ul = document.querySelector("ul");
+      console.log(ul.childNodes); // text노드 포함이 됨
+      console.log(ul.children); // html element만 포함
+
+      const li = ul.children[1];
+      console.log(li.childNodes);
+      console.log(li.parentElement);
+      console.log(li.parentNode);
+
+      console.log(li.previousSibling); // 노드 text만 나옴 (사용 거의 안함)
+      console.log(li.previousElementSibling); // 해당 element 바로 이전 형제 li가 나옴
+
+      console.log(li.nextSibling);
+      console.log(li.nextElementSibling); // 바로 뒤 형제 element li나옴
+    </script>
+  </body>
+</html>

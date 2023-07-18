@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = ["I", "study", "JavaScript", "right", "now"];
+
+      // splice( 삭제할 인덱스 번호, 부터 삭제할 요소갯수 )
+      // 삭제할 요소 갯수를 지정해주지 않으면 지정한 인덱스 번호부터
+      // 배열 끝까지 모두 삭제가 됨 splice(1);
+      // arr.splice(1, 1);
+      // arr.splice(1, 2, "lean", "java");
+      const toAddArr = ["lean", "java"];
+      // 삭제할 요소가 반환이 됨
+      // 특정 위치에 여러개를 삭제시키고 꺼내오는 용도
+      const arr2 = arr.splice(1, 2, ...toAddArr);
+      console.log(arr);
+      console.log(arr2);
+
+      const arr4 = ["하이", "헬로", ...arr];
+      let aa = JSON.parse(JSON.stringify(arr4));
+      const arr3 = [...arr];
+      console.log(aa);
+
+      // string.slice()와 동일
+      // 원래 배열은 그대로고, 자른것들은 반환 배열로
+
+      // concat([...]);
+      let nums = [1, 2];
+
+      nums = nums.concat([3, 4]);
+      console.log(nums);
+      // 배열이 결합되면서 새로운 참조배열이 생성되었고
+      // nums가 참조하는 배열 자체가 변경이 되었다
+
+      // splice()를 사용하면
+      // 결합은 됐으나 참조하는 배열은 변경없이 동일함
+      nums.splice(nums.length, 0, ...[3, 4]);
+      console.log(nums);
+
+      // nums.concat([3,4]);와 동일한 방법 ↓
+      // nums = [...nums, ...[3,4]];
+
+      // forEach() : 배열 반복문
+      // 배열 인덱스가 필요하다 (for ... in)
+      // 배열요소만 필요하다 (for ...of)
+      for (let elm of arr) {
+        console.log(elm);
+      }
+
+      for (let aa in arr) {
+        console.log(aa);
+      }
+
+      ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+        console.log(`${item} is at index ${index} in ${array}`);
+      });
+
+      const arr5 = [{ var: 1 }, { var: 2 }, { var: 3 }, { var: 4 }];
+
+      // obj --> arr5[0] : 참조상태일때는 indexOf가 됨
+      // obj = {...arr5[0]} : 새로운 객체가 생성 돼서 insexOf x
+
+      const obj = arr5[0];
+      console.log(arr5.indexOf(obj));
+    </script>
+  </body>
+</html>

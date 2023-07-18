@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class Student {
+        constructor(name, age, enrolled, score) {
+          this.name = name;
+          this.age = age;
+          this.enrolled = enrolled;
+          this.score = score;
+        }
+      }
+
+      const students = [
+        new Student("A", 29, true, 45),
+        new Student("B", 28, false, 80),
+        new Student("C", 30, true, 88),
+        new Student("D", 40, false, 90),
+        new Student("E", 18, true, 66),
+      ];
+
+      const result = students.filter((student) => student.enrolled === true);
+      console.log(result);
+
+      const fruit = ["사과", "바나나", "오렌지", "딸기"];
+      const fruits = [
+        { name: "딸기", type: "과일", price: 10000 },
+        { name: "수박", type: "과일", price: 20000 },
+        { name: "바나나", type: "과일", price: 30000 },
+      ];
+
+      const person = {
+        name: "Jonh",
+        age: 30,
+        city: "new york",
+      };
+      console.log("--------------------------");
+
+      console.log(fruit[2]);
+      person.name = "Jane";
+      fruit.push("수박");
+
+      person.gender = "Female";
+
+      console.log(fruit.length);
+      console.log(person.length);
+      console.log("------------------------------");
+
+      console.log(fruit);
+      let propertyCount = Object.values(person);
+      console.log(propertyCount);
+
+      let propertyCount2 = Object.values(person);
+      console.log(propertyCount2);
+
+      console.log("------------------------------");
+      console.log(fruits[0].name);
+    </script>
+  </body>
+</html>

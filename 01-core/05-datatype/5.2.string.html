@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let a = "abc";
+
+      const user = {
+        a: "a",
+        b: "b",
+      };
+
+      // 탬플릿 리터럴
+      let c = `${a} +++ abjsh `;
+      // const item = `
+      //   <li class="${style}">
+      //     ${content}
+      //   </li>
+      // `;
+
+      let emoji = "\u{1F60D}";
+      console.log(emoji);
+
+      const aaa = "aac";
+      console.log("aaa".length);
+      console.log(aaa.length);
+
+      // for .. of
+      // 문자열을 그대로 반환 (인덱스 위치의 값)
+      // h,l
+      // 반복되는 값은 갯수도 출력   예) hello면 l = 2
+      for (let char of "hello") {
+        console.log(char);
+      }
+
+      // 문자 갯수 index 넘버를 반환함
+      // hello면 0,1,2,3,4 가 출력
+      for (let char in "hello") {
+        console.log(char);
+      }
+
+      let users = [{ name: "jin ah" }, { age: 30 }];
+
+      // for (let userId in users) {
+      //   console.log(users[userId]);
+      //   console.log(users[1].age);
+      // }
+
+      let list = {
+        name: "jin ah",
+        age: "27",
+        study: "java",
+      };
+
+      if ("name" in list) {
+        console.log("있어요");
+      } else {
+        console.log("없어요");
+      }
+
+      let lists = [{ name: "jin ah" }, { age: 23 }, { study: "java" }];
+      let numList = [1, 2, 3, 4, 5, 6];
+
+      for (let info of lists) {
+        console.log(info);
+      }
+      for (let num of numList) {
+        console.log(num);
+      }
+    </script>
+  </body>
+</html>
