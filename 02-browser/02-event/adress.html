@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>주소록 정보 추가</h1>
+    <div class="adressForm">
+      <input type="text" id="name" placeholder="이름을 입력해주세요" />
+      <input type="tel" id="phone" placeholder="전화번호를 입력해주세요" />
+      <input type="email" id="email" placeholder="메일을 입력해주세요" />
+
+      <input type="button" id="addBtn" value="저장" />
+    </div>
+    <h1>주소록 리스트</h1>
+    <ul class="adressList"></ul>
+
+    <h1>연락처 삭제</h1>
+    <input
+      type="tel"
+      id="removePhoneNumber"
+      placeholder="삭제할 전화번호 입력"
+    />
+    <input type="button" id="removePhone" value="삭제" />
+
+    <h1>주소록 조회</h1>
+    <input type="button" id="findAdress" value="조회" />
+    <script>
+      let adress = [];
+
+      function addAdress() {
+        const name = document.querySelector("#name").value;
+        const phone = document.querySelector("#phone").value;
+        const email = document.querySelector("#email").value;
+
+        if (name !== "" && phone !== "" && email !== "") {
+          adress.push({
+            name: name,
+            phone: phone,
+            email: email,
+          });
+        }
+
+        document.querySelector("#name").value = "";
+        document.querySelector("#phone").value = "";
+        document.querySelector("#email").value = "";
+
+        showList();
+      }
+
+      function showList() {
+        const adressList = document.querySelector(".adressList");
+        adressList.textContent = "";
+
+        for (let i = 0; i < adress.length; i++) {
+          let list = document.createElement("li");
+          list.textContent = `이름:${adress[i].name} 전화번호:${adress[i].phone} 이메일:${adress[i].email}`;
+          adressList.appendChild(list);
+        }
+      }
+
+      function removeList() {
+        const removePhoneNumber =
+          document.querySelector("#removePhoneNumber").value;
+        const anotherList = adress.filter(
+          (user) => user.phone !== removePhoneNumber
+        );
+
+        if (anotherList.length === adress.length) {
+          alert("해당 정보는 존재하지 않습니다.");
+        } else {
+          adress = anotherList;
+          showList();
+        }
+        document.querySelector("#removePhoneNumber").value = "";
+      }
+
+      const addBtn = document.querySelector("#addBtn");
+      addBtn.addEventListener("click", addAdress);
+
+      const removeBtn = document.querySelector("#removePhone");
+      removeBtn.addEventListener("click", removeList);
+    </script>
+  </body>
+</html>

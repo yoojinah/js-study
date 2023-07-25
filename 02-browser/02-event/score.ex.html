@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>학생 점수 확인 리스트</h1>
+    <div class="addScoreList">
+      <input type="text" id="name" placeholder="이름을 입력하세요" />
+      <input type="text" id="score" placeholder="점수를 입력하세요" />
+      <input type="button" id="addBtn" value="확인" />
+    </div>
+    <ul class="totalScoreList"></ul>
+
+    <div class="findList">
+      점수 70점 이상인 학생 조회
+      <input type="button" id="findBtn" value="조회" />
+    </div>
+    <script>
+      let cotact = [];
+
+      function addScoreList() {
+        let studentName = document.querySelector("#name").value;
+        let studentScore = document.querySelector("#score").value;
+
+        if (studentName !== "" && studentScore !== "") {
+          cotact.push({
+            name: studentName,
+            score: studentScore,
+          });
+        }
+
+        if (studentScore >= 70) {
+          displatScoreList();
+        }
+        document.querySelector("#name").value = "";
+        document.querySelector("#score").value = "";
+
+        displatScoreList();
+      }
+
+      function displatScoreList() {
+        let scoreList = document.querySelector(".totalScoreList");
+        scoreList.textContent = "";
+
+        for (let i = 0; i < cotact.length; i++) {
+          let li = document.createElement("li");
+          li.textContent = `이름 :${cotact[i].name} | 점수${cotact[i].score}`;
+          scoreList.appendChild(li);
+        }
+      }
+
+      function FindMaxScore() {
+        let findList = document.querySelector(".findList");
+        findList.textContent = "";
+        // for (let i = 0; i < cotact.length; i++) {
+        //   let p = document.createElement("p");
+        //   p.textContent = `이름 :${cotact[i].name} | 점수${cotact[i].score}`;
+        //   findList.appendChild(p);
+        //   if (cotact.studentScore >= 70) {
+        //     displatScoreList();
+        //   } else {
+        //     alert("70점 이상인 학생이 없습니다.");
+        //   }
+        // }
+
+        let data = cotact.filter((student) => student.score >= 70);
+        if (data.length > 0) {
+          for (let i = 0; i < data.length; i++) {
+            let p = document.createElement("p");
+            p.textContent = `이름 : ${data[i].name} | 점수 : ${data[i].score}`;
+            findList.appendChild(p);
+          }
+        } else {
+          alert("70점 이상인 학생이 없습니다.");
+        }
+      }
+
+      let addBtn = document.querySelector("#addBtn");
+      addBtn.addEventListener("click", addScoreList);
+
+      let findBtn = document.querySelector("#findBtn");
+      findBtn.addEventListener("click", () => {
+        findBtn.value = "";
+        FindMaxScore();
+      });
+    </script>
+  </body>
+</html>

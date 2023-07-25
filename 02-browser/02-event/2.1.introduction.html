@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+    }
+    .modal {
+      opacity: 0;
+      width: 200px;
+      height: 150px;
+      background-color: antiquewhite;
+      display: flex;
+      justify-content: space-between;
+      /* align-items: center; */
+      margin-top: 3rem;
+      transition: all 0.3s;
+    }
+    .modal button {
+      height: 25px;
+    }
+
+    .box {
+      background-color: antiquewhite;
+      width: 500px;
+      height: 500px;
+      transition: all 0.3;
+    }
+    .ball {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: blueviolet;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+    }
+  </style>
+  <body>
+    <div class="ball"></div>
+    <button class="btn">클릭해 주세요</button>
+    <div class="modal">
+      <p>모달창임</p>
+      <button class="close">x</button>
+    </div>
+
+    <script src="2.1.introduction.js"></script>
+  </body>
+</html>
