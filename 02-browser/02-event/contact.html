@@ -1,25 +1,38 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      tr:hover {
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <h1>연락처 관리 프로그램</h1>
-    <div class="table">
-      <input type="text" id="name" placeholder="이름" />
-      <input type="tel" id="phone" placeholder="전화번호" />
-      <input type="email" id="email" placeholder="이메일" />
-      <input type="button" id="addBtn" value="추가" />
-    </div>
-    <h1>저장된 연락처 리스트</h1>
-    <ul class="savePhoneList"></ul>
-    <h2>추가된 정보 삭제하기</h2>
-    <div class="removeList">
-      <input type="text" id="removeName" placeholder="이름을 입력하세요" />
-      <input type="button" id="removeBtn" value="삭제" />
-    </div>
+    <h2>연락처 관리 프로그램</h2>
+    <hr />
+    <form action="">
+      <!-- MINE 타입 -->
+
+      <label>*이름: <input type="text" /></label><br />
+      <label>*휴대폰: <input type="tel" /></label><br />
+      <label>이메일: <input type="email" /></label>
+      <label for="">이미지: <input type="file" accept="image/*" /></label>
+      <br />
+      <button>추가</button>
+    </form>
+    <h3>저장된 연락처 리스트:</h3>
+    <table>
+      <tbody></tbody>
+    </table>
+    <hr />
+    연락처삭제: <br />
+    <form action="">
+      <label>이메일: <input type="text" /></label>
+      <button>삭제</button>
+    </form>
     <script src="contact.js"></script>
   </body>
 </html>
