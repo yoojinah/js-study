@@ -10,7 +10,10 @@ function createRow(name, phone, email, image) {
   <td>${name}</td>
   <td>${phone}</td>
   <td>${email}</td>
-  <td><img width="auto" height="30" src="${image}" alt="${name}"></td>
+  <td>${
+    image ? `<img width="auto" height="30" src="${image}" alt="${name}">` : ""
+  }</td>
+  <td><button class="modifyBtn">수정</button></td>
   `;
   return tr;
 }
@@ -42,45 +45,7 @@ function createRow(name, phone, email, image) {
     tbody.append(createRow(item.name, item.phone, item.email, item.image));
   }
 })();
-//함수 선언식
-// async function asyncTask(){}
-// asyncTask();
-//async 함수 표현식
-// const asyncTask = async () => {};
-// asyncTask();
-//ES2015버전에 나온 문법
-// (() => {
-//   //fetch(..)
-//   // http접속을 통해서 데이터를 가져오거나 보내거나 할 수 있음.
-//   // Promise
-//   // Promise 함수는 처리완료됐을 때 처리함수와,
-//   // 오류일 때 처리함수를 매개변수를 받는 함수
-//return new Promise(...)
-//   // 1. UI 처리하는 컨텍스트
-//   // console.log(1);
-//   // 2. 네트워크 요청을 처리하는 컨텍스트
-//   //네트워크 요청이 완료되면
-//   //.then((reponse) => {})
-//   //then의 매개변수 함수가 실행됨.
-//   // 응답객체를 매개변수로 넘겨준다.
-//   // //ES2015버전에 나온 문법
-//   // //비동기적(다 따로 돌리고 마지막에 끝나는 애한테 모으는것)
-//   // //인 처리순서를 보장하기 위한 방법
-//   // fetch("http://localhost:8080/contacts").then(response => {
-//   //   console.log(response);
-//   //   console.log(2);
-//   //   //res.json() -> json응답을 자바스크립트 객체(배열)로 변환 ↓
-//   //   return response.json();
-//   //   //객체(배열)로 변환된 값을 사용 ↓
-//   // }).then((result) => {
-//   //   console.log(result);
-//   // });
-//   // 3. UI처리하는 컨텍스트
-//   // console.log(3); // 1, 3, 2
-//   //네트워크 요청처리는 처리시간이 길다.
-//   // UI처리와 네트워크 처리를 같은 컨텍스트에서 하면
-//   // 네트워크 요청 처리가 끝날 때까지 브라우저는 멈춤
-// })();
+
 //추가폼
 (() => {
   const form = document.forms[0];
@@ -104,13 +69,10 @@ function createRow(name, phone, email, image) {
       alert("전화번호를 입력해주세요.");
       return;
     }
-    const reader = new FileReader();
-    // reader로 파일을 읽기가 완료되면 실행되면 이벤트 핸들러 함수
-    reader.addEventListener("load", async (e) => {
-      console.log(e);
-      // file -> base64 data-url
-      const image = e.target.result;
+    // 데이터를 서버에 전송하고, UI요소 생성
+    async function createContact(image) {
       /// --- 서버전송하면 UI 생성
+
       // 서버에 데이터를 전송
       // fetch(url, options)
       const response = await fetch("http://localhost:8080/contacts", {
@@ -124,25 +86,45 @@ function createRow(name, phone, email, image) {
           email: email.value,
           name: name.value,
           phone: phone.value,
-          image,
+          image: image ? image : null,
         }),
       });
       console.log(response);
+
       const result = await response.json();
       console.log(result);
+
       // 화면에 요소를 추가하는 것은 데이처리가 정상적으로 된 다음에
       // 서버에서 응답받은 데이터
       const { data } = result;
+
       // --- 3. 어딘가(부모, 다른요소)에 추가한다(append, prepend);
       document
         .querySelector("tbody")
         .prepend(createRow(data.name, data.phone, data.email, data.image));
       form.reset();
-    });
-    // 파일을 dataURL(base64)로 읽음
-    reader.readAsDataURL(file.files[0]);
+    }
+
+    if (file.files[0]) {
+      // 파일이 있을 때
+      const reader = new FileReader();
+      // reader로 파일을 읽기가 완료되면 실행되면 이벤트 핸들러 함수
+      reader.addEventListener("load", async (e) => {
+        console.log(e);
+        // file -> base64 data-url
+        const image = e.target.result;
+        createContact(image);
+      });
+      // 파일을 dataURL(base64)로 읽음
+      reader.readAsDataURL(file.files[0]);
+    } else {
+      // 파일이 없을 때
+      createContact();
+    }
+
     // return;
   });
+
   console.log("추가폼 처리 코드");
 })();
 // 삭제폼
@@ -163,5 +145,73 @@ function createRow(name, phone, email, image) {
     }
     tr.remove();
     form.reset();
+  });
+})();
+
+// 수정
+(() => {
+  document.querySelector("tbody").addEventListener("click", (e) => {
+    if (e.target.classList.contains("modifyBtn")) {
+      /** @type {HTMLButtonElement} */
+
+      const modifyBtn = e.target; // button -> td -> tr
+
+      const row = modifyBtn.parentElement.parentElement; // tr
+      const cells = row.querySelectorAll("td");
+      console.log(row);
+      console.log("이건?", cells);
+      console.log(cells[0].innerHTML, cells[1].innerHTML, cells[2].innerHTML);
+
+      // 모달 레이어 띄우기
+      /** @type {HTMLButtonElement} */
+      const layer = document.querySelector("#modify_layer");
+      layer.hidden = false;
+
+      // 모달 내부의 폼에 선택값을 채워 넣음
+      layer.querySelector("h3").innerHTML = cells[2].innerHTML;
+      const inputs = layer.querySelectorAll("input");
+      inputs[0].value = cells[0].innerHTML;
+      inputs[1].value = cells[1].innerHTML;
+
+      // 확인/취소 버튼이 이벤트 핸들러 추가
+      const buttons = layer.querySelectorAll("button");
+      // 취소 버튼
+      buttons[1].addEventListener("click", (e) => {
+        e.preventDefault();
+        layer.hidden = true;
+      });
+      // 수정 버튼
+      buttons[0].addEventListener("click", async (e) => {
+        e.preventDefault();
+        // 셀이 있는 고정값
+        const email = cells[2].innerHTML;
+        // 입력값으로
+        const name = inputs[0].value;
+        const phone = inputs[1].value;
+
+        const options = {
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            phone,
+          }),
+        };
+        // 서버 연동
+        const response = await fetch(
+          `http://localhost:8080/contacts/${email}`,
+          options
+        );
+
+        console.log(response.status);
+
+        // 데이터셀의 값을 수정입력 폼의 값으로 바꿨음.
+        cells[0].innerHTML = inputs[0].value;
+        cells[1].innerHTML = inputs[1].value;
+        layer.hidden = true;
+      });
+    }
   });
 })();
