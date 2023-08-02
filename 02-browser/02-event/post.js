@@ -1,132 +1,3 @@
-// (async () => {
-//   const url = "http://localhost:8080/posts";
-//   const resfonse = await fetch(url);
-//   const result = await resfonse.json();
-//   console.log(result);
-
-//   // 배열 메서드를 사용하기 위하여
-//   const data = Array.from(result);
-//   data.sort((a, b) => b.no - a.no);
-
-//   const container = document.querySelector(".container");
-
-//   for (let item of data) {
-//     const div = document.createElement("div");
-//     div.style.width = "70%";
-//     div.style.margin = "2rem auto";
-//     div.style.backgroundColor = "#fcfcfc";
-//     div.style.boxShadow = "2px 2px 10px #ddd";
-//     div.style.borderRadius = "20px";
-//     div.style.marginBottom = "2rem";
-//     div.style.borderLeft = "10px solid #e6dbff";
-
-//     const template = `
-
-//     <div data-no="${item.no}"></div>
-//     <h2>작성자 : ${item.name}</h2>
-
-//     <h3>${item.title}</h3>
-
-//     <p>${item.content}</p>
-
-//     <span>작성시간 : ${new Date(item.creatorTime).toLocaleString()}</span>
-//     `;
-//     div.innerHTML = template;
-//     container.appendChild(div);
-//   }
-// })();
-
-// (() => {
-//   const form = document.forms[0];
-//   const input = form.querySelectorAll("input");
-//   const name = input[0];
-//   const title = input[1];
-//   const content = form.querySelector("textarea");
-//   const add = form.querySelector("button");
-
-//   add.addEventListener("click", async (e) => {
-//     e.preventDefault();
-
-//     if (name.value === "") {
-//       alert("작성자 이름을 입력해주세요");
-//       return;
-//     }
-
-//     if (title.value === "") {
-//       alert("타이틀을 입력해주세요");
-//       return;
-//     }
-
-//     if (content.value === "") {
-//       alert("내용을 입력해주세요");
-//       return;
-//     }
-
-//     if (name.value !== "" && title.value !== "" && content.value !== "") {
-//       const response = await fetch("http://localhost:8080/posts", {
-//         method: "POST",
-//         headers: {
-//           "content-type": "application/json",
-//         },
-//         body: JSON.stringify({
-//           name: name.value,
-//           title: title.value,
-//           content: content.value,
-//         }),
-//       });
-
-//       // const responseData = await response.json();
-//       const container = document.querySelector(".container");
-//       const div = document.createElement("div");
-//       const template = `
-//     <style>
-// h2 {
-//   color:#333;
-//   font-weight: bold;
-//   font-size:1rem;
-//   border-bottom:1px dashed #ddd;
-//   margin:0;
-//   padding:1rem;
-// }
-// h3 {
-//   color: #4d3357;
-//   padding: 1rem;
-//   display:flex;
-//   align-items:center;
-//   font-size:1.2rem;
-// }
-// p {
-//   font-size: 1rem;
-//   padding: 1rem;
-// }
-// span {
-//   display:block;
-//   width:auto;
-//   border-top:1px dashed #ddd;
-//   color: #666;
-//   padding:1rem;
-//   font-size:.9rem;
-//   text-align:right;
-// }
-//     </style>
-//     <div data-no="${responseData.data.no}"></div>
-//     <h2>작성자 : ${responseData.data.name}</h2>
-
-//     <h3>${responseData.data.title}</h3>
-
-//     <p>${responseData.data.content}</p>
-
-//     <span>작성시간 : ${new Date(
-//       responseData.data.creatorTime
-//     ).toLocaleString()}</span>
-//     `;
-//       div.innerHTML = template;
-//       container.appendChild(div);
-//     }
-//   });
-// })();
-
-// ---------------------------------------
 function createTemplate(result) {
   const postDiv = document.createElement("article");
   postDiv.classList.add("post");
@@ -136,11 +7,12 @@ function createTemplate(result) {
         <h4 data-no="${result.no}">no. ${result.no}</h4>
       </div>
       
-      <h2>TITLE: ${result.title}</h2>
+      <h2>${result.title}</h2>
       
-      <p>내용 : ${result.content}</p>
+      <p>${result.content}</p>
       <span>작성시간: ${new Date(result.creatorTime).toLocaleString()}</span>
       <button class="removeBtn">X</button>
+      <button class="modifyBtn">수정</button>
     `;
 
   return postDiv;
@@ -206,12 +78,77 @@ function createTemplate(result) {
       console.log(removeArticle);
 
       const removeNumber = removeArticle.querySelector("h4").dataset.no; // data-no 값을 가져와서 할당
-      console.log();
+      console.log(removeNumber);
       // 서버 연결
       await fetch(`http://localhost:8080/posts/${removeNumber}`, {
         method: "DELETE",
       });
       removeArticle.remove();
+    }
+  });
+})();
+
+// 수정폼
+(() => {
+  document.querySelector(".container").addEventListener("click", (e) => {
+    if (e.target.classList.contains("modifyBtn")) {
+      /** @type {HTMLButtonElement} */
+
+      const modifyBtn = e.target;
+      console.log(modifyBtn);
+
+      const row = modifyBtn.parentElement.parentElement;
+      console.log(row);
+      const cells = row.querySelector("article");
+
+      // 모달 레이어 띄우기
+      /** @type {HTMLButtonElement} */
+      const layer = document.querySelector(".modal");
+      layer.hidden = false;
+
+      // 모달 내부의 폼에 기존 선택값을 채워넣음
+      const modal_cont = document.querySelector(".modal_cont");
+
+      const authorName = cells.querySelector("small").innerText;
+      const title = cells.querySelector("h2").innerText;
+      const content = cells.querySelector("p").innerText;
+
+      modal_cont.querySelector("strong").value = authorName;
+      modal_cont.querySelector("input").value = title;
+      modal_cont.querySelector("textarea").value = content;
+      console.log(content);
+
+      // 확인 취소 버튼에 이벤트 헨들러 추가
+      const buttons = modal_cont.querySelectorAll("button");
+      // 취소버튼
+      buttons[1].addEventListener("click", (e) => {
+        e.preventDefault();
+
+        layer.hidden = true;
+      });
+
+      // 수정버튼
+      buttons[0].addEventListener("click", async (e) => {
+        e.preventDefault();
+        const name = cells.querySelector("small").innerHTML;
+        log(name);
+        const title = modal_cont.querySelector("input").value;
+        const content = modal_cont.querySelector("textarea").value;
+
+        const options = {
+          method: "PUT",
+          body: JSON.stringify({
+            title,
+            content,
+          }),
+        };
+
+        // 서버연동 후 데이터 보내기
+        const response = await fetch(
+          `http://localhost:8080/posts/${name}`,
+          options
+        );
+      });
     }
   });
 })();

@@ -23,24 +23,9 @@
       margin: 0 auto;
       margin-top: 2rem;
     }
-    form:nth-of-type(1) {
-      margin: 3rem 1rem;
-      background-color: #f8f8f8;
-      padding: 2rem 1rem;
-      margin-top: 0;
-      height: 500px;
-      border: 1px solid #ededed;
-      border-radius: 10px 10px 50px 10px;
-      width: 70%;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
     #addForm {
       margin: 3rem 1rem;
-      background-color: #f8f8f8;
+      background-color: #fcfcfc;
       padding: 2rem 1rem;
       margin-top: 0;
       height: 500px;
@@ -52,50 +37,51 @@
       flex-direction: column;
       justify-content: space-between;
     }
-    form:nth-of-type(1) div {
+    #addForm div {
       margin-bottom: 2rem;
       padding-bottom: 2rem;
       border-bottom: 1px dashed #ddd;
     }
-    form:nth-of-type(1) div:first-of-type label {
+    #addForm div:first-of-type label {
       display: flex;
       justify-content: center;
       align-items: center;
       font-weight: bold;
       width: 100%;
     }
-    form:nth-of-type(1) div:nth-of-type(2) label {
+    #addForm div:nth-of-type(2) label {
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-weight: bold;
       width: 100%;
     }
-    form:nth-of-type(1) div:first-of-type input {
+    #addForm div:first-of-type input {
       width: 50%;
       margin-left: 15px;
       outline: none;
     }
-    form:nth-of-type(1) div:nth-of-type(2) input {
+    #addForm div:nth-of-type(2) input {
       width: 90%;
       outline: none;
     }
-    form:nth-of-type(1) input:first-of-type {
+    #addForm input:first-of-type {
       padding: 0.8rem;
       border: 1px solid #ededed;
     }
-    form:nth-of-type(1) textarea::placeholder {
-      padding: 1rem;
-    }
-    form:nth-of-type(1) textarea {
-      width: 100%;
-      height: 100%;
+
+    #addForm textarea {
       border: 0;
       border: 1px solid #ededed;
+      display: block;
       margin-bottom: 2rem;
       outline: none;
     }
-    form:nth-of-type(1) button {
+    #addForm textarea::placeholder {
+      padding: 1rem;
+    }
+
+    #addForm button {
       outline: none;
       border: 0;
       font-weight: bold;
@@ -134,6 +120,7 @@
       padding: 1.5rem;
       border-left: 10px solid #e6dbff;
       box-shadow: 2px 2px 10px #ededed;
+      position: relative;
     }
     .post .top_class {
       display: flex;
@@ -147,14 +134,33 @@
       font-size: 0.8rem;
       font-weight: 500;
     }
-    .container .post button {
+    .container .post .removeBtn {
       outline: none;
       border: 0;
       padding: 0.7rem;
       background-color: #e6dbff;
       position: absolute;
-      right: 0;
-      top: 0;
+      right: 0.3rem;
+      top: 0.3rem;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      font-weight: bold;
+      color: #777;
+    }
+    .modifyBtn {
+      display: block;
+      position: absolute;
+      bottom: 1rem;
+      left: 1.5rem;
+      width: 60px;
+      height: 35px;
+      outline: none;
+      border: 0;
+      background-color: #b7a2e7;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
     }
     .post h2 {
       padding-left: 0;
@@ -166,15 +172,108 @@
       padding: 2rem 0;
     }
     .post span {
-      padding-top: 2rem;
+      padding-top: 1.5rem;
       text-align: right;
       display: block;
       font-size: 0.8rem;
     }
+    article button {
+      cursor: pointer;
+    }
+    .modal {
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+    .modal_cont {
+      width: 40%;
+      height: 60vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+    }
+    .modal_cont {
+      border-radius: 20px;
+      border: 1px solid #fafafa;
+      border-radius: 20px;
+    }
+    .modal_cont form {
+      width: 70%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .modal_cont strong {
+      text-align: center;
+      width: 100%;
+      display: block;
+      padding-top: 2rem;
+    }
+    .modal_cont div:nth-of-type(1) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    .modal_cont div:nth-of-type(1) label {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .modal_cont div:nth-of-type(1) input {
+      width: 90%;
+      padding: 0.5rem;
+      outline: none;
+      border: 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .modal_cont form div:nth-of-type(2) {
+      width: 100%;
+      height: 300px;
+    }
+    .modal_cont form div:nth-of-type(2) textarea {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border: 1px solid #ccc;
+      outline: none;
+      border-radius: 5px;
+    }
+    .modal_cont div:nth-of-type(3) {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+    .modal_cont div:nth-of-type(3) button {
+      border: 1px solid;
+      width: 50%;
+      padding: 1rem;
+      outline: none;
+      border: 0;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #555;
+    }
   </style>
   <body>
     <h1>게시글 작성</h1>
-    <form action="">
+    <form action="" id="addForm">
       <div>
         <label
           >작성자
@@ -190,7 +289,7 @@
 
       <textarea
         id="addContent"
-        cols="30"
+        cols="100"
         rows="10"
         placeholder="내용을 입력하세요"
       ></textarea>
@@ -198,15 +297,26 @@
     </form>
     <div class="container"></div>
 
-    <!-- <div class="remove_form">
-      <form action="">
-        <label for="">
-          작성자 이름:
-          <input type="text" />
-        </label>
-        <button>삭제</button>
-      </form>
-    </div> -->
+    <div class="modal" hidden>
+      <div class="modal_cont">
+        <strong>작성자 :</strong>
+        <form action="">
+          <div>
+            <label for=""
+              >제목 :
+              <input type="text" name="" id="" />
+            </label>
+          </div>
+          <div>
+            <textarea cols="30" rows="10"></textarea>
+          </div>
+          <div>
+            <button>수정</button>
+            <button>취소</button>
+          </div>
+        </form>
+      </div>
+    </div>
     <script src="post.js"></script>
   </body>
 </html>

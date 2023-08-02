@@ -1,3 +1,22 @@
+//서버에서 데이터 조회 후 화면에 출력
+//JSON 데이터로 tr목록을 만드는 것
+// async: 함수를 비동기적으로 실행되게 함.
+// async 함수만 따로 떼서 너만 따로 돌아~ 하는 식으로 해줌.
+//UI컨텍스트와 별개의 컨텍스트로 실행되게 함.
+//프로세스(Process): 프로그램이 실행돼서 메모리(램)에 올라가면 프로세스
+//스레드(thread): 프로세스의 실행단위를 나눈 것.
+// 컨텍스트(context): 스레드내의 시간을 분할하여 CPU처리할 수 있게 한 단위
+//컨텍스트1(우선순위1), 컨텍스트2(우선순위2)
+// 우선순위에 따라서 1을 좀더 시간을 많이 할애하고, 2는 약간만 할애
+// 여기서는 async가 시작을 먼저하지만, await 만나서 잠시 멈췄다가,
+// 아래의 contact 코드가 돌아가고,
+// 나중에 await들이 돌아간다.
+
+let currentPage = 0; // 현재 페이지 번호
+const pageSize = 10; // 고정된 페이지 사이즈
+let isLastPage = false; //마지막 페이지인지 여부
+let currentquery = "";
+
 // template: UI형식의 틀
 function createRow(name, phone, email, image) {
   // 1. 요소 생성
@@ -17,33 +36,112 @@ function createRow(name, phone, email, image) {
   `;
   return tr;
 }
-//서버에서 데이터 조회 후 화면에 출력
-//JSON 데이터로 tr목록을 만드는 것
-// async: 함수를 비동기적으로 실행되게 함.
-// async 함수만 따로 떼서 너만 따로 돌아~ 하는 식으로 해줌.
-//UI컨텍스트와 별개의 컨텍스트로 실행되게 함.
-//프로세스(Process): 프로그램이 실행돼서 메모리(램)에 올라가면 프로세스
-//스레드(thread): 프로세스의 실행단위를 나눈 것.
-// 컨텍스트(context): 스레드내의 시간을 분할하여 CPU처리할 수 있게 한 단위
-//컨텍스트1(우선순위1), 컨텍스트2(우선순위2)
-// 우선순위에 따라서 1을 좀더 시간을 많이 할애하고, 2는 약간만 할애
-// 여기서는 async가 시작을 먼저하지만, await 만나서 잠시 멈췄다가,
-// 아래의 contact 코드가 돌아가고,
-// 나중에 await들이 돌아간다.
-(async () => {
-  //fetch(..)
-  // http접속을 통해서 데이터를 가져오거나 보내거나 할 수 있음.
-  // await Promise 객체
-  //Promise 객체 처리가 완료되면(resolve), 리턴값을 받음.
-  //await 키워드는 async 함수 안에서만 사용 가능.
-  const response = await fetch("http://localhost:8080/contacts");
+
+async function getPageList(page, query) {
+  let url = "";
+  if (query) {
+    url = `http://localhost:8080/contacts/paging/search?page=${page}&size=${pageSize}&query=${query}`;
+  } else {
+    url = `http://localhost:8080/contacts/paging?page=${page}&size=${pageSize}`;
+  }
+
+  const response = await fetch(url);
+
   const result = await response.json();
   console.log(result);
   const tbody = document.querySelector("tbody");
-  //배열 반복을 해서 tr을 만든 다음에 tbody 가장 마지막 자식에 추가
-  for (let item of result) {
+
+  //목록 초기화
+  tbody.innerHTML = "";
+  for (let item of result.content) {
     tbody.append(createRow(item.name, item.phone, item.email, item.image));
   }
+
+  currentPage = result.number;
+  isLastPage = result.last;
+
+  setBtnActive();
+}
+
+// 이전/다음 버튼 활성화 여부처리
+function setBtnActive() {
+  const buttons = document.forms[2].querySelectorAll("button");
+
+  const btnPrev = buttons[2];
+  const btnNext = buttons[3];
+
+  if (currentPage === 0) {
+    btnPrev.disabled = true;
+  } else {
+    btnPrev.disabled = false;
+  }
+
+  if (isLastPage) {
+    btnNext.disabled = true;
+  } else {
+    btnNext.disabled = false;
+  }
+}
+
+// 웹페이지 로딩이 완료되면, 페이징으로 데이터 조회 및 목록 생성
+(() => {
+  window.addEventListener("DOMContentLoaded", () => {
+    getPageList(0);
+  });
+})();
+
+(() => {
+  const buttons = document.forms[2].querySelectorAll("button");
+  const btnPrev = buttons[2];
+  const btnNext = buttons[3];
+
+  // 이전 버튼
+  btnPrev.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentPage > 0 && getPageList(currentPage - 1, currentquery);
+  });
+  // 다음 버튼
+  btnNext.addEventListener("click", (e) => {
+    e.preventDefault();
+    !isLastPage && getPageList(currentPage + 1, currentquery);
+  });
+})();
+
+// 검색기능
+(() => {
+  const txtQuery = document.forms[2].querySelector("input");
+  const btnSearch = document.forms[2].querySelector("button");
+
+  btnSearch.addEventListener("click", (e) => {
+    e.preventDefault();
+    currentquery = txtQuery.value;
+    getPageList(0, currentquery);
+  });
+
+  txtQuery.addEventListener("keyup", (e) => {
+    e.preventDefault();
+    if (e.key.toLocaleLowerCase() === "enter") {
+      currentquery = txtQuery.value;
+      getPageList(0, currentquery);
+    }
+  });
+})();
+
+// 검색조건 초기화
+(() => {
+  const btnReset = document.forms[2].querySelectorAll("button")[1];
+  btnReset.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // 검색조건 입력박스 초기화
+    document.forms[2].reset();
+
+    // 검색조건값 초기화
+    currentquery = "";
+
+    // 검색조건이 초기화되면 0번페이지에서 다시 조회
+    getPageList(0, currentquery);
+  });
 })();
 
 //추가폼
@@ -127,6 +225,7 @@ function createRow(name, phone, email, image) {
 
   console.log("추가폼 처리 코드");
 })();
+
 // 삭제폼
 (() => {
   const form = document.forms[1];
@@ -175,6 +274,7 @@ function createRow(name, phone, email, image) {
 
       // 확인/취소 버튼이 이벤트 핸들러 추가
       const buttons = layer.querySelectorAll("button");
+      console.log(buttons[0]);
       // 취소 버튼
       buttons[1].addEventListener("click", (e) => {
         e.preventDefault();
